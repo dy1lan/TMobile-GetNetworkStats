@@ -17,7 +17,11 @@ git clone https://github.com/dy1lan/TMobile-GetNetworkStats.git
 - Run `python3 GetInternetSpeeds.py`
 - This will run continuously, grabbing data every 5 minutes and place it into the "Data" folder, until you do "CTRL + C" or exit the command prompt.
 
+# Creating Plots from the CSV data
+
+- Run  `python3 CSV-To-Graph.py`
+- This will open up a file dialog to allow you to select a file, select one of the data files that were created by the "GetInternetSpeeds" script.
+- Once selected, this will create a 4G and 5G graph of all the data that has been collected so far.
 
 # Notes:
 - This has been tested and verified to be working on Windows and Raspberry Pi(Linux) so far.
-
