@@ -1,5 +1,5 @@
 # TMobile-GetNetworkStats
-Get Network Statistics for T-Mobiles Arcadyan5G Home Internet Router
+Get Network Statistics for T-Mobiles Arcadyan 5G Home Internet Router
 
 # Requirements:
 - Python 3 (This is tested on 3.9.13 & 3.9.2)
