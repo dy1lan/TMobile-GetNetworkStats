@@ -1,6 +1,6 @@
 import json
 import csv
-import os
+import os, sys
 import requests 
 import time
 from datetime import date
@@ -15,7 +15,9 @@ while(True):
 
         dateToday = today.strftime("%m-%d-%Y")
 
-        filename = "Data\{0}.csv".format(dateToday)
+        path = os.path.abspath(os.path.dirname(sys.argv[0]))
+
+        filename = "{0}/Data/{1}.csv".format(path, dateToday)
 
         url = requests.get("http://192.168.12.1/TMI/v1/gateway?get=signal")
         text = url.text
@@ -39,6 +41,6 @@ while(True):
         csv_writer.writerow(Values)
 
         data_file.close()
-    except:
-        pass
+    except Exception as ex:
+        print("Error: " + str(ex))
     time.sleep(300)
