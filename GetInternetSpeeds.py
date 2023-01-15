@@ -3,18 +3,16 @@ import csv
 import os, sys
 import requests 
 import time
-from datetime import date
+import pytz
 from datetime import datetime
 
 while(True):
+    utc_datetime = datetime.now(pytz.timezone('UTC'))
+    est_time = utc_datetime.astimezone(pytz.timezone('US/Eastern')).now()
+
+    current_time = est_time.strftime("%H:%M:%S")
+    dateToday = est_time.strftime("%m-%d-%Y")
     try:
-        today = date.today()
-        now = datetime.now()
-
-        current_time = now.strftime("%H:%M:%S")
-
-        dateToday = today.strftime("%m-%d-%Y")
-
         path = os.path.abspath(os.path.dirname(sys.argv[0]))
 
         filename = "{0}/Data/{1}.csv".format(path, dateToday)
@@ -42,5 +40,5 @@ while(True):
 
         data_file.close()
     except Exception as ex:
-        print("Error: " + str(ex))
+        print(str(dateToday) + " " + str(current_time) + " : Error: " + str(ex))
     time.sleep(300)

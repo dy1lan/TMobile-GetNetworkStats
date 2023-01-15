@@ -22,8 +22,8 @@ Five_G_Bands = df.columns[12]
 df.drop("eNBID", axis=1, inplace=True)
 df.drop("gNBID", axis=1, inplace=True)
 
-fig = px.line(df, x=df['Time'], y=df.columns[3:8])
-fig2 = px.line(df, x=df["Time"], y=df.columns[12:17])
+fig = px.line(df, x=df['Time'], y=df.columns[3:9])
+fig2 = px.line(df, x=df["Time"], y=df.columns[12:18])
 
 fig.update_layout(title='4G Stats for {0}'.format(filename),
                    plot_bgcolor='rgb(230, 230,230)',
