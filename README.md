@@ -29,6 +29,8 @@ git clone https://github.com/dy1lan/TMobile-GetNetworkStats.git
 ## 5G: 
 ![image](https://user-images.githubusercontent.com/22224999/170891091-ecea98d8-4231-4e30-a35c-0908b4eaa145.png)
 
+## Console Visuals:
+![image](https://user-images.githubusercontent.com/22224999/233249578-632f695c-ef60-4323-8e08-e11a4eadbe85.png)
 
 # Notes:
 - This has been tested and verified to be working on Windows and Raspberry Pi(Linux) so far.
