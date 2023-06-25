@@ -8,6 +8,8 @@ import pytz
 from datetime import datetime
 
 HAS_PRINTED = False
+LINE_UP = '\033[1A'
+LINE_CLEAR = '\x1b[2K'
 
 class TextColors:
     OKGREEN = '\033[92m'
@@ -16,10 +18,12 @@ class TextColors:
     END = '\033[0m'
 
 def CleanUpPreviousResults():
-    LINE_UP = '\033[1A'
-    LINE_CLEAR = '\x1b[2K'
     for i in range(21):
         print(LINE_UP, end=LINE_CLEAR) # Moves the cursor up and clears that line.
+
+def MoveCursorUp(numberOfLines):
+    for i in range(numberOfLines):
+        print(LINE_UP) # Moves the cursor up and clears that line.
 
 def CheckRSRP(rsrp):
     return GetColor(rsrp, -80, -90)
@@ -75,11 +79,10 @@ def PrintResults(current_time, four_g_bands, four_g_bars, four_g_cid, four_g_eNB
 def GetSpeeds():
     sleepThread = threading.Thread(target=StartWriterSleep, daemon=True)
     while(True):
-        utc_datetime = datetime.now(pytz.timezone('UTC'))
-        est_time = utc_datetime.astimezone(pytz.timezone('US/Eastern')).now()
+        utc_datetime = datetime.now()
+        current_time = utc_datetime.strftime("%H:%M:%S")
+        dateToday = utc_datetime.strftime("%m-%d-%Y")
 
-        current_time = est_time.strftime("%H:%M:%S")
-        dateToday = est_time.strftime("%m-%d-%Y")
         try:
             path = os.path.abspath(os.path.dirname(sys.argv[0]))
 
@@ -119,6 +122,8 @@ def GetSpeeds():
             
         except Exception as ex:
             print(str(dateToday) + " " + str(current_time) + " : Error: " + str(ex))
+            MoveCursorUp(1)
+            
         time.sleep(5) # Waits 5 seconds so that we aren't overloading the webpage.
 
 def StartWriterSleep():
